@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="StockReport" pageWidth="500" pageHeight="600" columnWidth="450" leftMargin="5" rightMargin="5" topMargin="10" bottomMargin="1" uuid="20c74443-a316-4333-8973-9eb46c587d80">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="mysql"/>
+	<style name="Arial" isDefault="true" fontName="Arial" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+	<parameter name="Title" class="java.lang.String"/>
+	<parameter name="noy" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[select emp_code, EmpName, Salary, Doj from electronics where TIMESTAMPDIFF(YEAR, Doj, CURDATE())>=$P{noy}]]>
+	</queryString>
+	<field name="emp_code" class="java.lang.String"/>
+	<field name="EmpName" class="java.lang.String"/>
+	<field name="Salary" class="java.lang.Integer"/>
+	<field name="Doj" class="java.lang.String"/>
+	<pageHeader>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Arial" mode="Opaque" x="0" y="5" width="490" height="15" forecolor="#FFFFFF" backcolor="#777765" uuid="e5e26a2a-ed21-4593-8f3f-d05f3299188f"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA["Retailers  who are working more than  " + String.valueOf($P{noy})+" Years"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement style="Arial" mode="Opaque" x="0" y="4" width="100" height="15" backcolor="#CBB453" uuid="0314dce9-7c5c-4085-9386-f141beb6a1ba"/>
+				<textElement textAlignment="Left"/>
+				<text><![CDATA["
+		  emp_code
+		"]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Arial" positionType="Float" mode="Opaque" x="80" y="4" width="190" height="15" backcolor="#CBB453" uuid="b9d4c5e4-ec0a-4674-8e9f-586b25986a41"/>
+				<text><![CDATA[
+		     " EmpName "
+		]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Arial" positionType="Float" mode="Opaque" x="270" y="4" width="100" height="15" backcolor="#CBB453" uuid="14390267-921e-4d55-8e69-b8e0208fd695"/>
+				<text><![CDATA["
+			Salary
+		"]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Arial" positionType="Float" mode="Opaque" x="370" y="4" width="120" height="15" backcolor="#CBB453" uuid="03a7a440-015c-49cb-8498-174b5eb33b6f"/>
+				<text><![CDATA["
+			Doj
+		"]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="6" width="60" height="15" uuid="7208fd61-1a68-464f-a3c9-568ef76b0069"/>
+				<text><![CDATA[CITY]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="7" width="100" height="14" uuid="6dd98ff8-5059-477f-a945-304557d8a5b1"/>
+				<text><![CDATA[RETAILER SHOP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="270" y="6" width="54" height="12" uuid="e0ab12ed-6a49-4662-9411-ee84e97f088e"/>
+				<text><![CDATA[PROFIT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="360" y="6" width="100" height="12" uuid="2037a31f-4fa9-4fbd-8c5f-e3da93f49d9d"/>
+				<text><![CDATA[DATE OF JOINING]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="4" width="100" height="15" uuid="59a913cb-fa7d-49fe-95fb-dbb3cff6bfb1"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{emp_code}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="100" y="4" width="170" height="15" uuid="a0faca11-3f8b-47dc-9bae-c58dcbb2b21c"/>
+				<textFieldExpression><![CDATA[$F{EmpName}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="270" y="4" width="100" height="15" uuid="89001e1b-1adf-4fdf-99da-cebd46ad26a9"/>
+				<textFieldExpression><![CDATA[$F{Salary}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="370" y="4" width="120" height="15" uuid="01147215-3756-4adf-a5b4-1f6a473410d6"/>
+				<textFieldExpression><![CDATA[$F{Doj}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="40" splitType="Stretch">
+			<textField>
+				<reportElement x="200" y="20" width="85" height="15" uuid="b1979415-b5c7-4b63-9e24-b5e033884da2"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page " + String.valueOf($V{PAGE_NUMBER})]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="285" y="20" width="75" height="15" uuid="b92d6b2f-afae-491d-8ed4-9f936e244e10"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[" of " + String.valueOf($V{PAGE_NUMBER})]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="92" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Arial" x="175" y="20" width="165" height="15" uuid="38d6858d-2bd9-47e7-bf80-694b0797fc9a"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA["Total Number of Retailer Shops " + String.valueOf($V{REPORT_COUNT})]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
